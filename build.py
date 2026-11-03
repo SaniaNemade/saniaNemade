@@ -131,14 +131,15 @@ def about():
     h = 250
     b = label(2, 20, 1, "about")
     para = [
-        "I like problems where the answer is buried somewhere",
-        "in a lot of data. Most of what I build is about finding",
-        "it: hybrid search, RAG pipelines and agents that cite",
-        "their sources, from prototype to 10M-row production.",
+        "Grad student at Stevens, headed for Forward",
+        "Deployed Engineering. I like sitting with people,",
+        "understanding the problem they're really trying",
+        "to solve, and building the AI that solves it,",
+        "then making sure it actually gets used.",
     ]
     for i, line in enumerate(para):
         b += f'<g class="up" {d(i, .08)}>' + t(2, 70 + i * 28, line, 16.5, T["fg"], "serif") + "</g>"
-    b += f'<g class="up" {d(5, .08)}>' + t(2, 200, "Hoboken, NJ  ·  saniapnemade@gmail.com", 12, T["muted"], "mono") + "</g>"
+    b += f'<g class="up" {d(5, .08)}>' + t(2, 222, "Hoboken, NJ  ·  saniapnemade@gmail.com", 12, T["muted"], "mono") + "</g>"
 
     x = 530
     b += card(x, 44, W - x - 2, 186)
@@ -231,7 +232,7 @@ def impact():
 
 # ------------------------------------------------------------------ journey
 def journey():
-    h = 400
+    h = 170
     b = label(2, 20, 4, "journey")
     y = 92
     stops = [(30, "2021", "Started B.E.", "Computer Engineering"),
@@ -258,35 +259,6 @@ def journey():
     b += f'<circle cx="745" cy="{y}" r="3.5" fill="{T["accent2"]}"/>'
     b += f'<circle class="pulse" cx="745" cy="{y}" r="3.5" stroke="{T["accent2"]}"/>'
 
-    # experience card
-    cy = 190
-    b += f'<g class="up" {d(5)}>' + card(2, cy, W - 4, 196)
-    b += t(28, cy + 40, "AI Developer Intern", 21, T["fg"], "serif", 600)
-    b += t(28, cy + 62, "X eleva Group", 13, T["dim"])
-    b += t(W - 28, cy + 40, "Jun – Aug 2026", 11.5, T["muted"], "mono", anchor="end")
-    steps = ["10M+ products", "hard filters", "pgvector HNSW", "keyword re-rank", "top 10"]
-    widths = [len(s) * 11.5 * 0.6 + 26 for s in steps]
-    gapx = (W - 56 - sum(widths)) / (len(steps) - 1)
-    px, py = 28, cy + 92
-    centers = []
-    for i, s in enumerate(steps):
-        w = widths[i]
-        last = i == len(steps) - 1
-        if last:
-            b += (f'<rect x="{px:.1f}" y="{py}" width="{w:.1f}" height="30" rx="15" fill="url(#acc)" '
-                  f'fill-opacity=".9"/>')
-            b += t(px + w / 2, py + 19.5, s, 11.5, T["on_acc"], "mono", 700, "middle")
-        else:
-            p, _ = pill(px, py, s, 11.5, 13, 30)
-            b += p
-        if i:
-            b += (f'<line x1="{centers[-1]:.1f}" y1="{py+15}" x2="{px-6:.1f}" y2="{py+15}" '
-                  f'stroke="{T["accent"]}" stroke-opacity=".45"/>')
-        centers.append(px + w + 6)
-        px += w + gapx
-    b += t(28, cy + 160, "Restructured a 10M+ row catalog into a 3-level hierarchy and embedded every description,", 12.5, T["dim"])
-    b += t(28, cy + 178, "cutting retrieval time by 30%.", 12.5, T["dim"])
-    b += "</g>"
     return svg(h, b)
 
 
